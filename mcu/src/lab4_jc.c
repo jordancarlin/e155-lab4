@@ -3,6 +3,9 @@
 // October 2024
 // Fur Elise, E155 Lab 4
 
+#include "../lib/STM32L432KC_TIM.h"
+//#include "../lib/STM32L432KC_RCC.c"
+
 // Pitch in Hz, duration in ms
 const int notes[][2] = {
 {659,	125},
@@ -116,6 +119,10 @@ const int notes[][2] = {
 {  0,	0}};
 
 int main(void) {
-	
-	
+  configureClock();
+  int numNotes = sizeof(notes)/sizeof(notes[0]);
+  for (int i = 0; i < numNotes; i++) {
+    PWM(notes[i][0]);
+    delay_millis(notes[i][1]);
+  }
 }
