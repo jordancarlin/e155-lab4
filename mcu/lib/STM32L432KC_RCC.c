@@ -4,10 +4,10 @@
 #include "STM32L432KC_RCC.h"
 
 void configurePLL() {
-    // Set clock to 80 MHz
+    // Set clock to 40 MHz
     // Output freq = (src_clk) * (N/M) / R
-    // (4 MHz) * (40/1) / 2 = 80 MHz
-    // M: 1, N: 40, R: 2
+    // (4 MHz) * (40/1) / 4 = 40 MHz
+    // M: 1, N: 40, R: 4
     // Use MSI as PLLSRC
 
     // Turn off PLL
@@ -29,7 +29,8 @@ void configurePLL() {
     RCC->PLLCFGR &= ~(0b111 << 4);
 
     // Set PLLR to 00
-    RCC->PLLCFGR &= ~(0b11 << 25);
+    RCC->PLLCFGR &= ~(0b1 << 26);
+    RCC->PLLCFGR |= (0b1 << 25);
 
     // Enable PLLR output
     RCC->PLLCFGR |= (1 << 24);
