@@ -37,15 +37,18 @@ void initTIM_PWM(TIM_TypeDef * TIMx) {
     TIMx->CCER |= (0b1 << 4);
     // Enable GPIO B3 pin to altmode
     pinMode(3, GPIO_ALT);
+    GPIO->AFRL |= (0b0001 << 12);
 }
 
 void set_TIM_PWM_freq(TIM_TypeDef * TIMx, uint32_t desiredFreq){
     if (desiredFreq == 0){
         TIMx->CR1 &= ~(0b1 << 0);
+        pinMode(3, GPIO_OUTPUT);
+        digitalWrite(3, 0);
     } else {
-        if ((TIMx->CR1 & 1) != 1){
+        // if (((GPIO->MODER >> 6 )& 0b11) != 0b01){
             initTIM_PWM(TIMx);
-        }
+        // }
         // Pulse width modulation mode allows you to generate a signal with
         //  a frequency determined by the value of the TIMx_ARR register and
         //  a duty cycle determined by the value of the TIMx_CCRx register.

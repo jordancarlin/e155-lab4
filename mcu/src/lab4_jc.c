@@ -125,4 +125,5 @@ int main(void) {
     PWM(notes[i][0]);
     delay_millis(notes[i][1]);
   }
+  PWM(0);
 }

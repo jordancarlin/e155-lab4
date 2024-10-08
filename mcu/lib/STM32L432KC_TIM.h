@@ -5,8 +5,8 @@
 #define STM32L4_TIM_H
 
 #include <stdint.h>
-#include "STM32L432KC_RCC.h"
 #include "STM32L432KC_GPIO.h"
+#include "STM32L432KC_RCC.h"
 
 ///////////////////////////////////////////////////////////////////////////////
 // Definitions
