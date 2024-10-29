@@ -42,7 +42,7 @@ void set_TIM_PWM_freq(TIM_TypeDef * TIMx, uint32_t desiredFreq){
     if (desiredFreq == 0){
         freq = 0x8FFFFFFF;
     } else {
-        freq = 100000/desiredFreq; // 100 kHz / desired frequency = counter
+        freq = (100000/desiredFreq)/2; // 100 kHz / desired frequency = counter
     }
 
     if ((TIMx->CR1 & 1) != 1){
